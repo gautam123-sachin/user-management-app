@@ -22,7 +22,7 @@ const MobileTable = ({ users }) => {
                                 City: {user.address.city}
                             </Typography>
                             <Button variant="contained" color="primary" component={Link} to={`/users/${user.id}`} sx={{display:'flex'}}>
-                                Action
+                                View Details
                             </Button>
                         </CardContent>
                     </Card>
