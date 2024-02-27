@@ -9,9 +9,7 @@ const WebTable = ({ users, handleSort, sortBy, sortOrder }) => {
             <TableHead sx={{ backgroundColor: '#0d6efd' }}>
                 <TableRow>
                     <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>ID</TableCell>
-                    <TableCell sx={{ color: 'white', fontWeight: 'bold' }} onClick={() => handleSort('name')}>
-                        Name {sortBy === 'name' && <span>{sortOrder === 'asc' ? '▲' : '▼'}</span>}
-                    </TableCell>
+                    <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Name</TableCell>
                     <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Username</TableCell>
                     <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Email</TableCell>
                     <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>City</TableCell>

@@ -8,6 +8,8 @@ import {
   CircularProgress,
   useTheme,
   useMediaQuery,
+  Select,
+  MenuItem,
 } from '@mui/material';
 import SearchBar from './SearchBar';
 import Pagination from '@mui/material/Pagination';
@@ -20,18 +22,25 @@ const UserList = ({ users, loading, error }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState('id');
   const [sortOrder, setSortOrder] = useState('asc');
-  const [sortBy, setSortBy] = useState('name');
   const usersPerPage = 10;
 
-  const filteredUsers = users.filter(user =>
+  const filteredUsers = users
+  .filter(user =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  ).sort((a, b) => {
-    if (sortBy === 'name') {
-      return sortOrder === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+  )
+  .sort((a, b) => {
+    switch (sortBy) {
+      case 'name':
+        return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+      case 'username':
+        return a.username.localeCompare(b.username, undefined, { sensitivity: 'base' });
+      case 'id':
+        return a.id - b.id;
+      default:
+        return 0;
     }
-  
-    return 0;
   });
 
   const indexOfLastUser = currentPage * usersPerPage;
@@ -88,10 +97,26 @@ const UserList = ({ users, loading, error }) => {
             <Box sx={{ marginBottom: '10px' }}>
               <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </Box>
+            <Box sx={{ marginBottom: '10px' }}>
+              <Select
+                value={sortBy}
+                size="small"
+                onChange={(e) => handleSort(e.target.value)}
+                displayEmpty
+                inputProps={{ 'aria-label': 'Sort By' }}
+              >
+                <MenuItem value="" disabled>
+                  Sort By
+                </MenuItem>
+                <MenuItem value="id">ID</MenuItem>
+                <MenuItem value="username">Username</MenuItem>
+                <MenuItem value="name">Name</MenuItem>
+              </Select>
+            </Box>
             {isMobile ? (
-              <MobileTable  users={currentUsers} handleSort={handleSort} sortBy={sortBy} sortOrder={sortOrder} />
+              <MobileTable users={currentUsers} />
             ) : (
-              <WebTable users={currentUsers} handleSort={handleSort} sortBy={sortBy} sortOrder={sortOrder} />
+              <WebTable users={currentUsers} />
             )}
             <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
               <Pagination
