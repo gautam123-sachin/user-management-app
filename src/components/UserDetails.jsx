@@ -40,7 +40,7 @@ const handleBack = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton color="inherit" onClick={handleBack}>
+            <IconButton color="inherit" onClick={handleBack} data-testid="back-button">
               <ArrowBackIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -64,7 +64,7 @@ const handleBack = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton color="inherit" onClick={handleBack}>
+            <IconButton color="inherit" onClick={handleBack} data-testid="back-button">
               <ArrowBackIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -87,7 +87,7 @@ const handleBack = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton color="inherit" onClick={handleBack}>
+          <IconButton color="inherit" onClick={handleBack} data-testid="back-button">
             <ArrowBackIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

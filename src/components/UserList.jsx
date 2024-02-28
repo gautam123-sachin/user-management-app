@@ -8,12 +8,11 @@ import {
   CircularProgress,
   useTheme,
   useMediaQuery,
-  Select,
-  MenuItem,
 } from '@mui/material';
 import SearchBar from './SearchBar';
 import Pagination from '@mui/material/Pagination';
 
+import Sort from './Sort';
 import WebTable from './WebTable';
 import MobileTable from './MobileTable';
 
@@ -98,20 +97,7 @@ const UserList = ({ users, loading, error }) => {
               <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </Box>
             <Box sx={{ marginBottom: '10px' }}>
-              <Select
-                value={sortBy}
-                size="small"
-                onChange={(e) => handleSort(e.target.value)}
-                displayEmpty
-                inputProps={{ 'aria-label': 'Sort By' }}
-              >
-                <MenuItem value="" disabled>
-                  Sort By
-                </MenuItem>
-                <MenuItem value="id">ID</MenuItem>
-                <MenuItem value="username">Username</MenuItem>
-                <MenuItem value="name">Name</MenuItem>
-              </Select>
+               <Sort sortBy={sortBy} handleSort={handleSort} />
             </Box>
             {isMobile ? (
               <MobileTable users={currentUsers} />
