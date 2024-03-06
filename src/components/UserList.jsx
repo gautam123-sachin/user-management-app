@@ -9,6 +9,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import Pagination from '@mui/material/Pagination';
 
@@ -85,6 +86,7 @@ const UserList = ({ users, loading, error }) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             User Management
           </Typography>
+          <Typography variant="h6"  sx={{ flexGrow: 1 }} component={Link} to={'/video'}>Video Call</Typography>
         </Toolbar>
       </AppBar>
       <Box sx={{ p: 2 }}>
