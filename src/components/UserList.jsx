@@ -8,6 +8,7 @@ import {
   CircularProgress,
   useTheme,
   useMediaQuery,
+  Hidden,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
@@ -87,6 +88,11 @@ const UserList = ({ users, loading, error }) => {
             User Management
           </Typography>
           <Typography variant="h6"  sx={{ flexGrow: 1 }} component={Link} to={'/video'}>Video Call</Typography>
+          <Hidden smDown>
+            <Typography variant="h6" component={Link} to={'/video'} sx={{ flexGrow: 1 }}>
+              Video Call
+            </Typography>
+          </Hidden>
         </Toolbar>
       </AppBar>
       <Box sx={{ p: 2 }}>
